@@ -1,7 +1,7 @@
 <template>
 <div class="parent">
   <div class="child">
-    5555
+    <button @click="login()">login</button>
   </div>
 </div>
   
@@ -9,7 +9,14 @@
 
 <script>
 export default {
-
+  methods: {
+    async login() {
+      this.$store.dispatch('login', {
+        email: '***',
+        password: '***',
+      });
+    },
+  },
 };
 </script>
 

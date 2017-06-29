@@ -15,7 +15,7 @@ class Api {
         'Content-type': 'application/json',
         authorization: this.token,
       },
-    });
+    }).then(res => res.json());
   }
 
   setToken(token) {
