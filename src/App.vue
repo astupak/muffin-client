@@ -6,14 +6,14 @@
 
 <script>
 import 'reset-css';
-import './App.sass';
 
 export default {
 
 };
 </script>
 
-<style lang="scss">
+<style lang="stylus">
+@import './stylus/main'
 :root {
   height: 100%;
 }
