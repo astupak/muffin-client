@@ -1,7 +1,7 @@
 <template>
 <div class="parent">
   <div class="child">
-    12313123123123
+    <button @click="login()">join</button>
   </div>
 </div>
   
@@ -9,7 +9,14 @@
 
 <script>
 export default {
-
+  methods: {
+    async login() {
+      this.$store.dispatch('login', {
+        email: '***',
+        password: '***',
+      });
+    },
+  },
 };
 </script>
 

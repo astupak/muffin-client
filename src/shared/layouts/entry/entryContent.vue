@@ -1,13 +1,13 @@
 <template>
-    <div class="basic-content">
+    <div class="app-entry-content">
       <slot></slot>
     </div>
 </template>
 
-<style lang="scss">
+<style lang = "scss">
 @import "~color-theme";
 
-.basic-content {
+.entry-content {
   display: flex;
   background: $background-color;
   height: 100%;
