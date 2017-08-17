@@ -1,6 +1,11 @@
 <template>
   <app-entry-layout>
-    <router-view slot="content"/>
+    <div slot="content">
+      <router-view />
+      123
+      <p>5555</p>
+    </div>
+
   </app-entry-layout>
 </template>
 

@@ -1,6 +1,6 @@
 import Entry from './entry';
-import LoginRoutes from './login';
-import JoinRoutes from './join';
+import LoginRoutes from './routes/login';
+import JoinRoutes from './routes/join';
 
 const routes = [{
   path: 'entry',
