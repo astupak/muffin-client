@@ -1,10 +1,5 @@
 <template>
-<div class="parent">
-  <div class="child">
     <button @click="login()">join</button>
-  </div>
-</div>
-  
 </template>
 
 <script>

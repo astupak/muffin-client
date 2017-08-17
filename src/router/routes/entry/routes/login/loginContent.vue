@@ -1,10 +1,29 @@
 <template>
-<div class="parent">
-  <div class="child">
-    <button @click="login()">login</button>
-  </div>
-</div>
-  
+    <v-card tile class="elevation-0">
+      <v-card-text class="grey">
+          <v-layout row>
+            <v-flex>
+             <v-text-field
+              label="Enter your email"
+            ></v-text-field>
+            </v-flex>
+          </v-layout>
+          <v-layout row>
+            <v-flex>
+            <v-text-field
+              label="Enter your password"
+              type="password"
+            ></v-text-field>
+
+            </v-flex>            
+          </v-layout>
+      </v-card-text>
+      <v-card-actions class="accent">
+        <v-layout row justify-end>
+          <v-btn>Enter</v-btn>
+        </v-layout>
+      </v-card-actions>
+    </v-card>
 </template>
 
 <script>

@@ -1,7 +1,9 @@
 <template>
-  <div id="app">
+  <v-app id="app" dark>
+    <v-container fluid fill-height class="ma-0 pa-0">
       <router-view/>
-  </div>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
@@ -14,6 +16,7 @@ export default {
 
 <style lang="stylus">
 @import './stylus/main'
+
 :root {
   height: 100%;
 }
