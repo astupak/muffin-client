@@ -1,31 +1,94 @@
 <template>
-    <button @click="login()">join</button>
+    <v-card tile>
+      <v-card-text>
+        <v-container>
+          <form>
+            <v-layout row>
+              <v-flex>
+                <v-text-field
+                name="email"
+                label="Mail"
+                id="email"
+                placeholder="example@example.com"
+                v-model="email"
+                type="email"
+                :rules="[emailValidator]"
+                required>
+                </v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row>
+              <v-flex>
+                <v-text-field
+                name="password"
+                label="Password"
+                id="password"
+                placeholder="password"
+                v-model="password"
+                type="password"
+                :rules="[passwordValidator]"
+                required>
+                </v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row>
+              <v-flex>
+                <v-text-field
+                name="confirmPassword"
+                label="Confirm Password"
+                id="confirmPassword"
+                placeholder="password"
+                v-model="confirmPassword"
+                type="password"
+                :rules="[passwordValidator, comparePasswords]"
+                required>
+                </v-text-field>
+              </v-flex>
+            </v-layout>
+          </form>
+          </form>
+        </v-container>
+      </v-card-text>
+      <v-card-actions class="secondary">
+        <v-layout>
+          <v-flex class="text-sm-right">
+            <v-btn :disabled="!formCompleted" class="primary">Sign Up</v-btn>
+          </v-flex>
+        </v-layout>
+      </v-card-actions>
+    </v-card>
 </template>
 
 <script>
-export default {
-  methods: {
-    async login() {
-      this.$store.dispatch('login', {
-        email: '***',
-        password: '***',
-      });
+  export default {
+    data() {
+      return {
+        email: '',
+        password: '',
+        confirmPassword: '',
+      };
     },
-  },
-};
+
+    computed: {
+      emailValidator() {
+        const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return pattern.test(this.email) || 'Invalid e-mail.';
+      },
+
+      passwordValidator() {
+        return this.password.length > 4 ? true : 'Password is too short. (Atleast 5 symbols)';
+      },
+
+      comparePasswords() {
+        return this.password === this.confirmPassword ? true : 'Passwords don\'t match';
+      },
+
+      formCompleted() {
+        const emailCompleted = this.emailValidator === true;
+        const passwordCompleted = this.passwordValidator === true && this.comparePasswords === true;
+
+        return emailCompleted && passwordCompleted;
+      },
+    },
+  };
 </script>
-
-<style lang = "scss">
-.parent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.child {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-</style>

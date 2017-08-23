@@ -6,8 +6,9 @@
     :icons = "icons"
     :scrollable = "scrollable"
     :dark = "dark"
+    :color = "color"
   >
-    <v-tabs-bar slot="activators">
+    <v-tabs-bar :class='color' slot="activators">
       <v-tabs-slider></v-tabs-slider>
        <v-tabs-item
         v-for="item in items"
@@ -28,6 +29,10 @@
       fixed: Boolean,
       grow: Boolean,
       icons: Boolean,
+      color: {
+        type: String,
+        default: 'secondary',
+      },
       dark: {
         type: Boolean,
         default: true,
