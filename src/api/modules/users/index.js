@@ -4,7 +4,7 @@ class Users {
     this.api = api;
   }
 
-  create(email, displayName, password) {
+  create(displayName, email, password) {
     return this.api.request('POST', 'user', {
       email,
       displayName,
