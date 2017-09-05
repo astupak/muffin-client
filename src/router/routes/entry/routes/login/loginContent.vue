@@ -1,36 +1,83 @@
 <template>
-<div class="parent">
-  <div class="child">
-    <button @click="login()">login</button>
-  </div>
-</div>
-  
+    <v-card tile>
+      <form @submit.prevent = "login">
+        <v-card-text>
+          <v-container>
+               <v-layout row>
+                <v-flex>
+                  <v-text-field
+                  name="email"
+                  label="Mail"
+                  id="email"
+                  placeholder="example@example.com"
+                  v-model="email"
+                  type="email"
+                  :rules="[emailValidator]"
+                  required>
+                  </v-text-field>
+                </v-flex>
+              </v-layout>
+              <v-layout row>
+                <v-flex>
+                  <v-text-field
+                  name="password"
+                  label="Password"
+                  id="password"
+                  placeholder="password"
+                  v-model="password"
+                  type="password"
+                  :rules="[passwordValidator]"
+                  required>
+                  </v-text-field>
+                </v-flex>
+              </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions class="secondary">
+          <v-layout>
+            <v-flex class="text-sm-right">
+              <v-btn type="submit" :disabled="!formCompleted" class="primary">Enter</v-btn>
+            </v-flex>
+          </v-layout>
+        </v-card-actions>
+      </form>
+    </v-card>
 </template>
 
 <script>
-export default {
-  methods: {
-    async login() {
-      this.$store.dispatch('login', {
-        email: '***',
-        password: '***',
-      });
+  export default {
+    data() {
+      return {
+        email: '',
+        password: '',
+      };
     },
-  },
-};
+
+    computed: {
+      emailValidator() {
+        const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return pattern.test(this.email) || 'Invalid e-mail.';
+      },
+
+      passwordValidator() {
+        return this.password.length > 4 ? true : 'Password is too short. (Atleast 5 symbols)';
+      },
+
+      formCompleted() {
+        const emailCompleted = this.emailValidator === true;
+        const passwordCompleted = this.passwordValidator === true;
+
+        return emailCompleted && passwordCompleted;
+      },
+    },
+
+    methods: {
+      login() {
+        this.$store.dispatch('user/login', {
+          email: this.email,
+          password: this.password,
+        });
+      },
+    },
+  };
 </script>
-
-<style lang = "scss">
-.parent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.child {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-</style>

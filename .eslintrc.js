@@ -30,6 +30,9 @@ module.exports = {
         'ignorePropertyModificationsFor': ['state']
       }
     ],
+    'arrow-parens': ['error', 'as-needed', {
+      'requireForBlockBody': true
+    }],
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never',
@@ -40,6 +43,7 @@ module.exports = {
       'optionalDependencies': ['test/unit/index.js']
     }],
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-useless-escape': 'off'
   }
 }
